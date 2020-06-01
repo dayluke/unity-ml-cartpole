@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CartController : MonoBehaviour
 {
-    public new Rigidbody rigidbody;
     public float speed;
+    public float resetAngle;
+    public GameObject pole;
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.A))
@@ -17,6 +19,16 @@ public class CartController : MonoBehaviour
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        
+
+        if (pole.transform.rotation.eulerAngles.z < 360 - resetAngle &&
+            pole.transform.rotation.eulerAngles.z > resetAngle)
+        {
+            ResetGame();
+        }
+    }
+
+    private void ResetGame()
+    {
+        Debug.Log("Reset");
     }
 }

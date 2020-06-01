@@ -487,8 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a309a1c1dc1de8e40bda07b5cd83e902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 1823092146}
   speed: 4
+  resetAngle: 15
+  pole: {fileID: 1993188330}
 --- !u!23 &1823092148
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -574,8 +575,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 180
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
