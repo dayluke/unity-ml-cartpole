@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 1823092146}
   - component: {fileID: 1823092145}
   - component: {fileID: 1823092151}
+  - component: {fileID: 1823092152}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -635,6 +636,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a309a1c1dc1de8e40bda07b5cd83e902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   speed: 4
   resetAngle: 60
   minStartAngle: -10
@@ -736,6 +741,30 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1823092152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823092144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    VectorActionSize: 02000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: Cart
+  TeamId: 0
+  m_UseChildSensors: 1
 --- !u!1 &1993188330
 GameObject:
   m_ObjectHideFlags: 0

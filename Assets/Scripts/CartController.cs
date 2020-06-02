@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CartController : MonoBehaviour
+using Unity.MLAgents;
+public class CartController : Agent
 {
     public float speed;
     public float resetAngle;
