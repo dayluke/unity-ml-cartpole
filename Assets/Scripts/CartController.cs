@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
+
 public class CartController : Agent
 {
     public float speed;
@@ -9,6 +11,32 @@ public class CartController : Agent
     public float minStartAngle;
     public float maxStartAngle;
     public GameObject pole;
+    public Rigidbody poleRigidbody;
+
+    public override void Initialize()
+    {
+
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        
+    }
+
+    public override void OnActionReceived(float[] vectorAction)
+    {
+
+    }
+
+    public override void OnEpisodeBegin()
+    {
+        // Reset environment
+    }
+
+    public override void Heuristic(float[] actionsOut)
+    {
+        // Player input
+    }
 
     private void Awake()
     {
