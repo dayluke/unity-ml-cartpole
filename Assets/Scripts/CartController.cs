@@ -39,24 +39,21 @@ public class CartController : Agent
 
     public override void OnEpisodeBegin()
     {
-        // Reset environment
+        ResetGame();
     }
 
     public override void Heuristic(float[] actionsOut)
     {
         // Player input
-    }
-
-    private void Update()
-    {
+        actionsOut[0] = 0;
         if (Input.GetKey(KeyCode.A))
         {
-            MoveCart(Vector3.left);
+            actionsOut[0] = 1;
         }
     
         if (Input.GetKey(KeyCode.D))
         {
-            MoveCart(Vector3.right);
+            actionsOut[0] = 2;
         }
 
         if (pole.transform.rotation.eulerAngles.z < 360 - resetAngle &&
