@@ -15,17 +15,26 @@ public class CartController : Agent
 
     public override void Initialize()
     {
-
+        ResetGame();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        
+        sensor.AddObservation(pole.transform.rotation.z);
+        sensor.AddObservation(poleRigidbody.velocity);
     }
 
     public override void OnActionReceived(float[] vectorAction)
     {
+        if (Mathf.FloorToInt(vectorAction[0] == 1))
+        {
+            MoveCart(Vector3.left);
+        }
 
+        if (Mathf.FloorToInt(vectorAction[0] == 2))
+        {
+            MoveCart(Vector3.right);
+        }
     }
 
     public override void OnEpisodeBegin()
@@ -38,21 +47,16 @@ public class CartController : Agent
         // Player input
     }
 
-    private void Awake()
-    {
-        ResetGame();
-    }
-
     private void Update()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            MoveCart(Vector3.left);
         }
     
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            MoveCart(Vector3.right);
         }
 
         if (pole.transform.rotation.eulerAngles.z < 360 - resetAngle &&
@@ -76,5 +80,10 @@ public class CartController : Agent
         this.gameObject.transform.position = Vector3.zero;
 
         pole.GetComponent<Rigidbody>().isKinematic = false;
+    }
+    
+    private void MoveCart(Vector3 dir)
+    {
+        transform.Translate(dir * speed * Time.deltaTime);
     }
 }
