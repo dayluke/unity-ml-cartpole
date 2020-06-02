@@ -26,15 +26,27 @@ public class CartController : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        if (Mathf.FloorToInt(vectorAction[0] == 1))
+        if (Mathf.FloorToInt(vectorAction[0]) == 1)
         {
             MoveCart(Vector3.left);
         }
 
-        if (Mathf.FloorToInt(vectorAction[0] == 2))
+        if (Mathf.FloorToInt(vectorAction[0]) == 2)
         {
             MoveCart(Vector3.right);
         }
+
+        if (pole.transform.rotation.eulerAngles.z < 360 - resetAngle &&
+            pole.transform.rotation.eulerAngles.z > resetAngle)
+        {
+            SetReward(-1f);
+            EndEpisode();
+        }
+        else
+        {
+            SetReward(0.1f);
+        }
+        Debug.Log(GetCumulativeReward());
     }
 
     public override void OnEpisodeBegin()
@@ -59,7 +71,7 @@ public class CartController : Agent
         if (pole.transform.rotation.eulerAngles.z < 360 - resetAngle &&
             pole.transform.rotation.eulerAngles.z > resetAngle)
         {
-            ResetGame();
+            EndEpisode();
         }
     }
 
