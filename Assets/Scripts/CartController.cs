@@ -6,7 +6,14 @@ public class CartController : MonoBehaviour
 {
     public float speed;
     public float resetAngle;
+    public float minStartAngle;
+    public float maxStartAngle;
     public GameObject pole;
+
+    private void Awake()
+    {
+        ResetGame();
+    }
 
     private void Update()
     {
@@ -27,8 +34,19 @@ public class CartController : MonoBehaviour
         }
     }
 
-    private void ResetGame()
+    public void ResetGame()
     {
         Debug.Log("Reset");
+        pole.GetComponent<Rigidbody>().isKinematic = true;
+        pole.GetComponent<Rigidbody>().velocity = pole.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        pole.transform.position = Vector3.up * 2;
+        //pole.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        float startingAngle = Random.Range(minStartAngle, maxStartAngle);
+        pole.transform.rotation = Quaternion.Euler(new Vector3(0, 0, startingAngle));
+
+        this.gameObject.transform.position = Vector3.zero;
+
+        pole.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
