@@ -8,6 +8,7 @@ public class BoundingBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        cartController.ResetGame();
+        cartController.SetReward(-1f);
+        cartController.EndEpisode();
     }
 }
