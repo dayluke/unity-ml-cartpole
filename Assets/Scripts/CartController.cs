@@ -12,6 +12,7 @@ public class CartController : Agent
     public float maxStartAngle;
     public GameObject pole;
     public Rigidbody poleRigidbody;
+    public bool debug;
 
     public override void Initialize()
     {
@@ -44,9 +45,9 @@ public class CartController : Agent
         }
         else
         {
-            SetReward(0.1f);
+            SetReward(0.05f);
         }
-        Debug.Log(GetCumulativeReward());
+        if (debug) Debug.Log(GetCumulativeReward());
     }
 
     public override void OnEpisodeBegin()
@@ -77,18 +78,24 @@ public class CartController : Agent
 
     public void ResetGame()
     {
-        Debug.Log("Reset");
         pole.GetComponent<Rigidbody>().isKinematic = true;
         pole.GetComponent<Rigidbody>().velocity = pole.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         pole.transform.position = Vector3.up * 2;
         //pole.transform.rotation = Quaternion.Euler(Vector3.zero);
-
-        float startingAngle = Random.Range(minStartAngle, maxStartAngle);
+        float startingAngle = GetRandomAngle(minStartAngle, maxStartAngle);
+        //Debug.Log("STARTING ANGLE: " + startingAngle);
         pole.transform.rotation = Quaternion.Euler(new Vector3(0, 0, startingAngle));
 
         this.gameObject.transform.position = Vector3.zero;
 
         pole.GetComponent<Rigidbody>().isKinematic = false;
+    }
+
+    private float GetRandomAngle(float min, float max)
+    {
+        float randomAngle = Random.Range(min, max);
+        if (randomAngle < 1 && randomAngle > -1) randomAngle = GetRandomAngle(min, max);
+        return randomAngle;        
     }
     
     private void MoveCart(Vector3 dir)
