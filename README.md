@@ -1,4 +1,5 @@
 # Unity ML Agents: Cartpole
+![](unity-cartpole-ml-training-2.gif)
 A preview of the power of Unity's new ML Agents package.
 
 ## Description
